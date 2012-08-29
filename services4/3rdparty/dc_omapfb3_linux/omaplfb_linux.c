@@ -188,13 +188,13 @@ void OMAPLFBAtomicIntInc(OMAPLFB_ATOMIC_INT *psAtomic)
 
 OMAPLFB_ERROR OMAPLFBGetLibFuncAddr (char *szFunctionName, PFN_DC_GET_PVRJTABLE *ppfnFuncTable)
 {
-	if(strcmp("PVRGetDisplayClassJTable", szFunctionName) != 0)
+	if(strcmp("PVRGetDisplayClassJTable2", szFunctionName) != 0)
 	{
 		return (OMAPLFB_ERROR_INVALID_PARAMS);
 	}
 
 	
-	*ppfnFuncTable = PVRGetDisplayClassJTable;
+	*ppfnFuncTable = PVRGetDisplayClassJTable2;
 
 	return (OMAPLFB_OK);
 }
@@ -287,7 +287,7 @@ void OMAPLFBFlip(OMAPLFB_DEVINFO *psDevInfo, OMAPLFB_BUFFER *psBuffer)
 
 OMAPLFB_UPDATE_MODE OMAPLFBGetUpdateMode(OMAPLFB_DEVINFO *psDevInfo)
 {
-/*	struct omap_dss_device *psDSSDev = fb2display(psDevInfo->psLINFBInfo);
+	struct omap_dss_device *psDSSDev = fb2display(psDevInfo->psLINFBInfo);
 	OMAP_DSS_DRIVER(psDSSDrv, psDSSDev);
 
 	enum omap_dss_update_mode eMode;
@@ -322,13 +322,13 @@ OMAPLFB_UPDATE_MODE OMAPLFBGetUpdateMode(OMAPLFB_DEVINFO *psDevInfo)
 			break;
 	}
 
-	return OMAPLFB_UPDATE_MODE_UNDEFINED;*/
-	return OMAPLFB_UPDATE_MODE_AUTO;
+	return OMAPLFB_UPDATE_MODE_UNDEFINED;
+//	return OMAPLFB_UPDATE_MODE_AUTO;
 }
 
 OMAPLFB_BOOL OMAPLFBSetUpdateMode(OMAPLFB_DEVINFO *psDevInfo, OMAPLFB_UPDATE_MODE eMode)
 {
-/*	struct omap_dss_device *psDSSDev = fb2display(psDevInfo->psLINFBInfo);
+	struct omap_dss_device *psDSSDev = fb2display(psDevInfo->psLINFBInfo);
 	OMAP_DSS_DRIVER(psDSSDrv, psDSSDev);
 	enum omap_dss_update_mode eDSSMode;
 	int res;
@@ -361,8 +361,8 @@ OMAPLFB_BOOL OMAPLFBSetUpdateMode(OMAPLFB_DEVINFO *psDevInfo, OMAPLFB_UPDATE_MOD
 		DEBUG_PRINTK((KERN_INFO DRIVER_PREFIX ": %s: Device %u: set_update_mode failed (%d)\n", __FUNCTION__, psDevInfo->uiFBDevID, res));
 	}
 
-	return (res == 0);*/
-	return OMAPLFB_TRUE;
+	return (res == 0);
+//	return OMAPLFB_TRUE;
 }
 
 OMAPLFB_BOOL OMAPLFBWaitForVSync(OMAPLFB_DEVINFO *psDevInfo)
@@ -412,7 +412,7 @@ OMAPLFB_BOOL OMAPLFBWaitForVSync(OMAPLFB_DEVINFO *psDevInfo)
 
 OMAPLFB_BOOL OMAPLFBManualSync(OMAPLFB_DEVINFO *psDevInfo)
 {
-/*	struct omap_dss_device *psDSSDev = fb2display(psDevInfo->psLINFBInfo);
+	struct omap_dss_device *psDSSDev = fb2display(psDevInfo->psLINFBInfo);
 	OMAP_DSS_DRIVER(psDSSDrv, psDSSDev);
 
 	if (psDSSDrv != NULL && psDSSDrv->sync != NULL)
@@ -424,8 +424,8 @@ OMAPLFB_BOOL OMAPLFBManualSync(OMAPLFB_DEVINFO *psDevInfo)
 			return OMAPLFB_FALSE;
 		}
 	}
-*/
-	printk (" OMAPLFBManualSync Not Supported \n");
+
+//	printk (" OMAPLFBManualSync Not Supported \n");
 	return OMAPLFB_TRUE;
 }
 

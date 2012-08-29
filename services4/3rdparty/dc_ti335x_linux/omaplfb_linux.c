@@ -182,13 +182,13 @@ void OMAPLFBAtomicIntInc(OMAPLFB_ATOMIC_INT *psAtomic)
 
 OMAPLFB_ERROR OMAPLFBGetLibFuncAddr (char *szFunctionName, PFN_DC_GET_PVRJTABLE *ppfnFuncTable)
 {
-	if(strcmp("PVRGetDisplayClassJTable", szFunctionName) != 0)
+	if(strcmp("PVRGetDisplayClassJTable2", szFunctionName) != 0)
 	{
 		return (OMAPLFB_ERROR_INVALID_PARAMS);
 	}
 
 	
-	*ppfnFuncTable = PVRGetDisplayClassJTable;
+	*ppfnFuncTable = PVRGetDisplayClassJTable2;
 
 	return (OMAPLFB_OK);
 }

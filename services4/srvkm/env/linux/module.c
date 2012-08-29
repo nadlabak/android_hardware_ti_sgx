@@ -121,8 +121,8 @@ MODULE_PARM_DESC(gPVRDebugLevel, "Sets the level of debug output (default 0x7)")
 #endif 
 
  
-EXPORT_SYMBOL(PVRGetDisplayClassJTable);
-EXPORT_SYMBOL(PVRGetBufferClassJTable);
+EXPORT_SYMBOL(PVRGetDisplayClassJTable2);
+EXPORT_SYMBOL(PVRGetBufferClassJTable2);
 
 #if defined(PVR_LDM_MODULE)
 static struct class *psPvrClass;
