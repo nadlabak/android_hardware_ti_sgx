@@ -30,7 +30,7 @@ PLATFORM_VERSION := $(shell \
 		cat $(TARGET_ROOT)/product/$(TARGET_PRODUCT)/system/build.prop | \
 			grep ^ro.build.version.release | cut -f2 -d'=' | cut -f1 -d'-'; \
 	else \
-		echo 2.0; \
+		echo 2.3; \
 	fi)
 
 # ro.build.version.release contains the version number for release builds, or
