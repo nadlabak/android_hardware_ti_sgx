@@ -51,10 +51,12 @@ kbuild: $(TARGET_OUT)/kbuild/Makefile
 		EXTRA_CFLAGS="$(ALL_KBUILD_CFLAGS)" \
 		V=$(V) W=$(W) \
 		TOP=$(TOP)
+ifneq ($(CM_BUILD),1)
 ifeq ($(DEBUGLINK),1)
 	@for kernel_module in $(addprefix $(TARGET_OUT)/kbuild/,$(INTERNAL_KBUILD_OBJECTS:.o=.ko)); do \
 		$(patsubst @%,%,$(STRIP)) --strip-unneeded $$kernel_module; \
 	done
+endif
 endif
 	@for kernel_module in $(addprefix $(TARGET_OUT)/kbuild/,$(INTERNAL_KBUILD_OBJECTS:.o=.ko)); do \
 		cp $$kernel_module $(TARGET_OUT); \
