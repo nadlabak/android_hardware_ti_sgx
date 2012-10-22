@@ -77,9 +77,6 @@ include ../common/android/paths.mk
 include ../common/android/armv7-a.mk
 include ../common/android/features.mk
 
-PVR_LDM_PLATFORM_PRE_REGISTERED := 1
-PVR_LDM_PLATFORM_PRE_REGISTERED_DEV := "\"pvrsrvkm\""
-
 ifneq ($(strip $(KERNELDIR)),)
  include ../kernel_version.mk
  ifeq ($(call kernel-version-at-least,2,6,35),true)
