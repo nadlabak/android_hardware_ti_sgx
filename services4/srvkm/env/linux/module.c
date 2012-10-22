@@ -104,7 +104,6 @@
 #endif
 #define DRVNAME		PVRSRV_MODNAME
 #define DEVNAME		PVRSRV_MODNAME
-#define SYS_SGX_DEV_NAME	PVRSRV_MODNAME
 
 #if defined(SUPPORT_DRI_DRM)
 #define PRIVATE_DATA(pFile) ((pFile)->driver_priv)
