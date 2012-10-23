@@ -44,6 +44,9 @@
 
 #if defined(SYS_OMAP4_HAS_DVFS_FRAMEWORK)
 #include <linux/opp.h>
+#else
+#include <plat/resource.h>
+#include <plat/omap-pm.h>
 #endif
 
 #if defined(SUPPORT_DRI_DRM_PLUGIN)
@@ -205,6 +208,26 @@ PVRSRV_ERROR EnableSGXClocks(SYS_DATA *psSysData)
 
 	SysEnableSGXInterrupts(psSysData);
 
+#if !defined(SYS_OMAP4_HAS_DVFS_FRAMEWORK)
+	if (cpu_is_omap3430()) 
+	{
+		/* pin the memory bus bw to the highest value */
+		omap_pm_set_min_bus_tput(&gpsPVRLDMDev->dev,
+		OCP_INITIATOR_AGENT, 400000);
+	} 
+	else if (cpu_is_omap3630()) 
+	{
+		/* pin the memory bus bw to the highest value */
+		omap_pm_set_min_bus_tput(&gpsPVRLDMDev->dev,
+		OCP_INITIATOR_AGENT, 800000);
+	} 
+	else
+	{
+		PVR_DPF((PVR_DBG_ERROR, "ForceMaxSGXClocks: \
+		Invalid OMAP Chip ID"));
+		return PVRSRV_ERROR_UNABLE_TO_ENABLE_CLOCK;
+	}
+#endif
 	
 	atomic_set(&psSysSpecData->sSGXClocksEnabled, 1);
 
@@ -227,6 +250,10 @@ IMG_VOID DisableSGXClocks(SYS_DATA *psSysData)
 	}
 
 	PVR_DPF((PVR_DBG_MESSAGE, "DisableSGXClocks: Disabling SGX Clocks"));
+
+#if !defined(SYS_OMAP4_HAS_DVFS_FRAMEWORK)
+	omap_pm_set_min_bus_tput(&gpsPVRLDMDev->dev, OCP_INITIATOR_AGENT, 0);
+#endif
 
 	SysDisableSGXInterrupts(psSysData);
 
